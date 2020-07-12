@@ -1,0 +1,24 @@
+%background-dark{
+    background-color: black;
+    color: white;
+}
+
+
+.app-head{
+    @extend %background-dark;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    &-title{
+       font-size: 2.5vw;
+    }
+    &-reset{
+        position: absolute;
+        right: 5%;
+        align-self: center;
+        button {
+            margin: 0 5px;
+            font-size: 1.2rem;
+        }
+    }
+}

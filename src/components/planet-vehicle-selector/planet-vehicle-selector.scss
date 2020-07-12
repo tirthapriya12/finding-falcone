@@ -1,0 +1,14 @@
+.app-pv-selector{
+    border-radius: 0 20%;
+    border: 1.5px solid #eee;
+    min-height: 10vh;
+    min-width: 4vw;
+    padding: 2%;
+    margin: 2%;
+    display: inline-block;
+
+    ul{
+        list-style-type: none;
+        padding: 0;
+    }
+}
