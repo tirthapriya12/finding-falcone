@@ -3,11 +3,12 @@ import types from './types';
 
 const vehiclesURL = "https://findfalcone.herokuapp.com/vehicles";
 
-export const getVehicles = () => (dispatch) => {
+export const getVehicles = (callback) => (dispatch) => {
     dispatch(setVehiclesLoading());
 
     fetch(vehiclesURL).then((res) => res.json()).then((vehicles) => {
         dispatch(setVehicles(vehicles));
+        callback && callback();
     })
 }
 
