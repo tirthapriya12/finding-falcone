@@ -1,8 +1,65 @@
 
-.app-finding-falcone-body {
+.app-finding-falcone{
     display: flex;
     flex-direction: row;
     justify-content: center;
-    width: 70%;
-    position: relative;
+    flex-wrap: wrap;
+    &-body {
+        display: inline-flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+        justify-content: center;
+        width: 70%;
+        position: relative;
+    }
+    &-divider{
+        height: 12rem;
+        border: 1px solid #eef;
+        margin: 2%;
+        display: inline-block;
+        position: relative;
+    }
+    &-selection-stats{
+        margin: 2%;
+        height: 10vh;
+        display: inline-block;
+        position: relative;
+    }
+}
+.app-finding-falcone-submit{  
+    display: flex;
+    justify-content: center;
+    padding: 2%;
+    button{
+        background-color: #000;
+        border: none;
+        border-radius: 4%;
+        color: #fff;
+        cursor: pointer;
+        padding: 1%;
+    }
+    button:disabled{
+        cursor: not-allowed;
+    }
+}
+
+
+@media only screen and (max-width: 780px) {
+    .app-finding-falcone{
+        &-body {
+            width: 68%;
+        }
+    }
+}
+@media only screen and (max-width: 430px) {
+    .app-finding-falcone{
+        &-body {
+            width: 96%;
+        }
+        &-divider {
+            flex-basis: 100%;
+            width: 0;
+            height: 0;
+        }
+    }
 }

@@ -9,19 +9,13 @@ const initialState = {
 
 export default function (state = initialState, action) {
     let { selections, vehicleAvailabilityMap } = state;
+    let newSelections = selections.slice();
     switch (action.type) {
         case types.SET_USER_SELECTION:
-            let newSelections = selections.slice();
-            newSelections[action.payload.index] = {...action.payload.selection};
+            newSelections[action.payload.index] = new UserSelection(action.payload.selection.planet,action.payload.selection.vehicle);
             return {
                 ...state,
                 selections: [...newSelections],
-            }
-        case types.MODIFY_USER_SELECTION:
-            selections[action.payload.index] = action.payload.selection;
-            return {
-                ...state,
-                selections
             }
         case types.UPDATE_VEHICLE_AVAILABILITY:
             vehicleAvailabilityMap = action.payload.vehicleAvailabilityMap;
@@ -31,7 +25,7 @@ export default function (state = initialState, action) {
             };
         case types.RESET_USER_SELECTION:
             return {
-                selections: []
+                selections: [Array(MAX_SELECTABLE_PLANETS).fill().map(()=>(new UserSelection()))]
             }
         default:
             return state;

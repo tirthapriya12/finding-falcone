@@ -2,6 +2,8 @@
 const types = {
     GET_ERRORS:                  'GET_ERRORS',
     GET_PLANETS:                 'GET_PLANETS',
+    GET_TOKEN:                   'GET_TOKEN',
+    FIND_FALCONE:                'FIND_FALCONE',
     PLANETS_LOADING:             'PLANETS_LOADING',
     VEHICLES_LOADING:            'VEHICLES_LOADING',
     GET_VEHICLES:                'GET_VEHICLES',

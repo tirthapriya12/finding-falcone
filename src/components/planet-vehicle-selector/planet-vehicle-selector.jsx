@@ -1,14 +1,13 @@
 import React, {
-    useState,
-    useEffect
-} from 'react';
-import PropTypes from 'prop-types';
-import './planet-vehicle-selector.scss'
-import UserSelection from '../../models/userSelection'
+       useState,
+       useEffect
+}                       from 'react';
+import PropTypes        from 'prop-types';
+import UserSelection    from '../../models/userSelection';
+import './planet-vehicle-selector.scss';
 
 class PlanetVehicleSelector extends React.Component {
 
-    // const [selection, setSelection] = useState(defaultState);
     constructor(props) {
         super(props);
         const { index, userSelection } = props;
@@ -21,16 +20,12 @@ class PlanetVehicleSelector extends React.Component {
     }
 
 
-
-    componentDidUpdate() {
-
-    }
-
     static getDerivedStateFromProps(props, state) {
         const { selection } = state;
         const { userSelection, index } = props;
+
         if (userSelection.length == 0) {
-            return { selection: defaultSelection }
+            return { selection: new UserSelection() }
         }
         return null;
     }
@@ -39,7 +34,11 @@ class PlanetVehicleSelector extends React.Component {
         const { setUserSelection, index } = this.props;
         const { selection } = this.state
         let planet = planets.find((planet) => (planet.name === event.target.value));
+
         selection.setPlanet(planet);
+        // reset vehicle selection because current planet distance may not support previously selected vehicle
+        selection.setVehicle(null);  
+
         this.setState({ selection }, () => {
             setUserSelection(this.state.selection, index);
         });
@@ -49,12 +48,15 @@ class PlanetVehicleSelector extends React.Component {
     onVehicleSelection = (vehicle) => {
         const { selection } = this.state;
         const { setUserSelection, index } = this.props;
+        
         selection.setVehicle(vehicle);
         this.setState({ selection }, () => {
             setUserSelection(this.state.selection, index);
         });
     }
-
+    /**
+     * Renders vehicle list as radio buttons , disables vechicles based on userSlection in the list
+     */
     renderVehicles = (props) => {
         let { vehicles, userSelection, index, vehicleAvailability } = props;
         let { selection } = this.state;
@@ -69,23 +71,27 @@ class PlanetVehicleSelector extends React.Component {
                             //update checked and disabled status when userSelection of planet changes 
                             let vehicle_qty = vehicleAvailability && vehicleAvailability.get(vehicle.name);
                             let checked = userSelection[Number(index) - 1] && userSelection[Number(index) - 1].vehicle && vehicle.name === userSelection[Number(index) - 1].vehicle.name ? true : false;
-                            let disabled = (selection.planet && selection.planet.distance > vehicle.max_distance) ||
-                                (vehicle_qty === 0) ||
-                                !selection.planet; // vehicle shouldn't be selectable if it's range is less.
+                            // vehicle shouldn't be selectable if it's range is less.
+                            let disabled = ((selection.planet && selection.planet.distance > vehicle.max_distance) ||
+                                            (vehicle_qty === 0) ||
+                                            !selection.planet) && !checked; // if it's checked don't disable this one
 
-                            return (
+                            return (/**render vehicle selector (radio buttons) */
                                 <li disabled={disabled} key={index + '_' + id}>
                                     <input type="radio" checked={checked} disabled={disabled} name={"vehicle_" + index} id={'veh_' + index + '_' + id} value={vehicle.name} onChange={() => this.onVehicleSelection(vehicle)} />
                                     <label htmlFor={'veh_' + index + '_' + id}>{vehicle.name + ' (' + vehicle_qty + ')'}</label>
                                 </li>
                             )
-                        }) /**render vehicle selector (radio buttons) */
+                        }) 
                     }
                 </ul>
             </div>
         )
     }
 
+    /**
+     * Renders Planet selection list , disables those  planets which are selected in any other selection slot
+     */
     renderPlanets = (props) => {
         let { planets, userSelection, index } = props;
         let { selection } = this.state;
@@ -104,10 +110,10 @@ class PlanetVehicleSelector extends React.Component {
                 }
                 {//If   
                     planets &&
-                    planets.map((planet, id) => {
+                    planets.map((planet, id) => {/**Render planets dropdown selector */
                         let disabled = selectedPlanets.indexOf(planet.name) > -1;
                         return (<option disabled={disabled} key={index + '_' + id}>{planet.name}</option>);
-                    }) /**Render planets dropdown selector */
+                    }) 
                 }
             </select>
         )
@@ -123,7 +129,7 @@ class PlanetVehicleSelector extends React.Component {
                 {this.renderVehicles(props)}
 
                 { //If
-                    props.userSelection.length && selection.planet && selection.vehicle &&
+                    props.userSelection.length && selection.planet && selection.vehicle ?
                     (
                         <span className="app-pv-time-taken">
                             <label>Time taken: </label>
@@ -131,7 +137,7 @@ class PlanetVehicleSelector extends React.Component {
                                 {selection.planet.distance / selection.vehicle.speed || ''}
                             </span>
                         </span>
-                    )
+                    ) : ''
                 }
 
             </div>

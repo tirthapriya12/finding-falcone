@@ -7,6 +7,7 @@ import {
 import Header                        from './components/header/header';
 import Footer                        from './components/footer/footer';
 import FindFalcone                   from './pages/find-falcone/find-falcone';
+import ResultPage                    from './pages/result/result-page';
 
 const AppRoutes = () => {
     return (
@@ -20,7 +21,7 @@ const AppRoutes = () => {
                     <FindFalcone/>
                 </Route>
                 <Route exact path="/result">
-
+                    <ResultPage/>
                 </Route>
                 <Route path="/">
                     <Redirect to="/findFalcone" />

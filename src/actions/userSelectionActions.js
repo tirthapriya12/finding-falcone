@@ -22,6 +22,7 @@ export const editUserSelection = (selection, index) => {
 
 export const computeVehicleAvailabilty = (userSelection, vehicles) => {
     let vehicleAvailabilityMap = new Map();
+    
     vehicles.forEach((vehicle) => {
         vehicleAvailabilityMap.set(vehicle.name, vehicle.total_no)
     });
