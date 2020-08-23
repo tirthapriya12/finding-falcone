@@ -1,0 +1,30 @@
+.app-result{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    font-family: cursive;
+    &-card{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        h3{
+            color: #a94442;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        }
+        &-img{
+            position: relative;
+            width: 70%;
+        }
+    }
+    &-playagain-btn{
+        button{
+            border: none;
+            background-color: #227D7B;
+            color: #fff8dc;
+            cursor: pointer;
+            padding: 5px;
+            height: 4vh;
+        }
+    }
+}

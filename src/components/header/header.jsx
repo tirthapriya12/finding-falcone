@@ -1,6 +1,7 @@
 import React        from 'react';
 import {connect}    from 'react-redux';
 import types        from '../../actions/types';
+import PropTypes from "prop-types";
 import './header.scss';
 
 const Header = (props) => {
@@ -21,5 +22,9 @@ const mapDispatchToProps = (dispatch) => {
     return {
         reset: () => { dispatch({ type: types.RESET_USER_SELECTION }) }
     }
+}
+
+Header.propTypes = {
+    reset: PropTypes.func
 }
 export default connect(null, mapDispatchToProps)(Header);

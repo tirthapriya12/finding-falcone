@@ -57,7 +57,9 @@ class FindFalcone extends React.Component {
 
     _onSubmit(){
         const { userSelection, falconeFinder } = this.props;
+        this.setState({isLoading:true})
         this.props.findFalcone(falconeFinder.token, userSelection.selections, () => {
+            this.setState({ isLoading: false })
             this.props.history.push('/result');
         });
     }
