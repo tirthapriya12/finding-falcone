@@ -25,7 +25,7 @@ export default function (state = initialState, action) {
             };
         case types.RESET_USER_SELECTION:
             return {
-                selections: [Array(MAX_SELECTABLE_PLANETS).fill().map(()=>(new UserSelection()))]
+                selections: Array(MAX_SELECTABLE_PLANETS).fill().map(()=>(new UserSelection()))
             }
         default:
             return state;
