@@ -8,6 +8,7 @@ import './header.scss';
 
 const Header = (props) => {
     const [ helpModalOpen, setHlpModalState ] = useState(false);
+    const headerButtons = props.headerbuttons ? props.headerbuttons : {reset:true,help:true};
     return (
         <React.Fragment>
             <header className="app-head">
@@ -15,8 +16,8 @@ const Header = (props) => {
                     <h2>Finding Falcone!</h2>
                 </div>
                 <div className="app-head-reset">
-                    <button onClick={() => props.reset()} title="reset selection">🔁</button>
-                    <button onClick={() =>{setHlpModalState(true)}} title="help">❓</button>
+                    { headerButtons.reset && <button onClick={() => props.reset()} title="reset selection">🔁</button>}
+                    { headerButtons.help && <button onClick={() =>{setHlpModalState(true)}} title="help">❓</button> }
                 </div>
             </header>
             {
@@ -36,6 +37,7 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 Header.propTypes = {
-    reset: PropTypes.func
+    reset: PropTypes.func,
+    headerbuttons: PropTypes.object
 }
 export default connect(null, mapDispatchToProps)(Header);

@@ -15,6 +15,7 @@ import {
 }                            from '../../actions/userSelectionActions';
 import PlanetVehicleSelector from '../../components/planet-vehicle-selector/planet-vehicle-selector';
 import Spinner               from '../../components/spinner/spinner';
+import DefaultPageLayout         from '../../components/layout/default-page-layout';
 import './find-falcone.scss';
 
 const MAX_SELECTABLE_PLANETS = 4;
@@ -87,7 +88,7 @@ class FindFalcone extends React.Component {
         const { vehicles, planets, userSelection } = this.props;
         const { isLoading } = this.state;
         const isSubmitDisabled = userSelection.selections.filter((selection) => { return (selection && selection.vehicle && selection.planet) }).length !== MAX_SELECTABLE_PLANETS;
-        
+        const headerButtons = { reset: true, help:true };
         if(isLoading){
             return (
                 <Spinner/>
@@ -95,7 +96,7 @@ class FindFalcone extends React.Component {
         }
 
         return(
-            <React.Fragment>
+            <DefaultPageLayout headerbuttons={headerButtons}>
                 <section className="app-finding-falcone">
                     <section className="app-finding-falcone-body">
                         <PlanetVehicleSelector index="1" vehicleAvailability={userSelection.vehicleAvailabilityMap} userSelection={userSelection.selections} vehicles={vehicles.vehicleList} planets={planets.planetList} setUserSelection={this._onUserSelection} />
@@ -108,7 +109,7 @@ class FindFalcone extends React.Component {
 
                 </section>
                 <div className="app-finding-falcone-submit"><button onClick={this._onSubmit.bind(this)} disabled={isSubmitDisabled}>Submit</button></div>
-            </React.Fragment>
+            </DefaultPageLayout>
         )
     }
 }

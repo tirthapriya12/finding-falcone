@@ -54,6 +54,7 @@ class PlanetVehicleSelector extends React.Component {
             setUserSelection(this.state.selection, index);
         });
     }
+    
     /**
      * Renders vehicle list as radio buttons , disables vechicles based on userSlection in the list
      */
