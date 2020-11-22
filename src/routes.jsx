@@ -11,9 +11,6 @@ const AppRoutes = () => {
     return (
         <Router>
             <Switch>
-                <Route exact path="/intro">
-
-                </Route>
                 <Route exact path="/findFalcone">
                     <FindFalcone/>
                 </Route>

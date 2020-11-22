@@ -19,12 +19,20 @@ class PlanetVehicleSelector extends React.Component {
 
     }
 
-
+    /**
+     * -----Be careful gets called everytime parent re-renders----
+     * works fine until any anti-pattern is used in it
+     * @param {*} props 
+     * @param {*} state 
+     */
     static getDerivedStateFromProps(props, state) {
         const { selection } = state;
         const { userSelection, index } = props;
 
-        if (userSelection.length == 0) {
+        if (userSelection.length == 0 ||
+            (!userSelection[Number(index) - 1].planet && !userSelection[Number(index) - 1].vehicle) &&
+            (selection.planet || selection.vehicle)) {
+              
             return { selection: new UserSelection() }
         }
         return null;
@@ -149,6 +157,7 @@ class PlanetVehicleSelector extends React.Component {
 PlanetVehicleSelector.propType = {
     vehicles: PropTypes.array,
     planets: PropTypes.array,
+    userSelection: PropTypes.array,
     setUserSelection: PropTypes.func
 }
 

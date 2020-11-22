@@ -1,21 +1,21 @@
-import React                 from 'react';
-import { connect }           from 'react-redux';
-import { isEqual }           from 'lodash';
-import { withRouter }        from 'react-router-dom';
-import { getPlanets }        from '../../actions/planetsActions';
-import { getVehicles }       from '../../actions/vehiclesActions';
+import React                   from 'react';
+import { connect }             from 'react-redux';
+import { isEqual }             from 'lodash';
+import { withRouter }          from 'react-router-dom';
+import { getPlanets }          from '../../actions/planetsActions';
+import { getVehicles }         from '../../actions/vehiclesActions';
 import {
     getToken,
     findFalcone
-}                           from '../../actions/findFalconeAction';
+}                              from '../../actions/findFalconeAction';
 import { 
     setUserSelection,
     editUserSelection,
     computeVehicleAvailabilty
-}                            from '../../actions/userSelectionActions';
-import PlanetVehicleSelector from '../../components/planet-vehicle-selector/planet-vehicle-selector';
-import Spinner               from '../../components/spinner/spinner';
-import DefaultPageLayout         from '../../components/layout/default-page-layout';
+}                              from '../../actions/userSelectionActions';
+import PlanetVehicleSelector   from '../../components/planet-vehicle-selector/planet-vehicle-selector';
+import Spinner                 from '../../components/spinner/spinner';
+import DefaultPageLayout       from '../../components/layout/default-page-layout';
 import './find-falcone.scss';
 
 const MAX_SELECTABLE_PLANETS = 4;
