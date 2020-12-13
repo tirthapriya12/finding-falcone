@@ -27,7 +27,11 @@ module.exports = function (_env, argv) {
             options: {
               cacheDirectory: true,
               cacheCompression: false,
-              envName: isProduction ? "production" : "development"
+              envName: isProduction ? "production" : "development",
+              presets: [
+                '@babel/preset-env',
+                '@babel/preset-react'
+              ]
             }
           }
         },
