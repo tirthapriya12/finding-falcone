@@ -1,5 +1,5 @@
 import React from 'react';
-import jest from 'jest';
+
 import { shallow } from 'enzyme';
 import { mockStore } from '../../utils/mockStore';
 import { Provider } from "react-redux";
@@ -110,6 +110,6 @@ describe('Test FindFalcone', () => {
     });
 
     test('FindFalcone renders', () => {
-        expect(renderComponent(props).isEmptyRender).toBeFalsy()
+        expect(renderComponent(props).isEmptyRender()).toBeFalsy()
     })
 })
