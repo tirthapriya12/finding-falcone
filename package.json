@@ -12,7 +12,7 @@
     "test:coverage": "jest --coverage"
   },
   "dependencies": {
-    "lodash": "^4.17.19",
+    "lodash": "^4.17.21",
     "prop-types": "^15.7.2",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
@@ -59,7 +59,6 @@
     "webpack-cli": "^3.3.9",
     "webpack-dev-server": "^3.8.1"
   },
-  
   "jest": {
     "transform": {
       "^.+\\.(js|jsx)$": "babel-jest"

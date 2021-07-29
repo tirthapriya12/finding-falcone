@@ -1,0 +1,11 @@
+{
+    "presets": [
+        "@babel/preset-env",
+        "@babel/preset-react"
+    ],
+    "plugins": [
+        "@babel/plugin-syntax-dynamic-import", //Enables dynamic import() syntax in browsers lacking native Promise support.
+        "@babel/plugin-proposal-class-properties", //Enables support for the public instance field syntax proposal, for writing class-based React components.,
+        "transform-es2015-modules-commonjs"
+    ]
+}
