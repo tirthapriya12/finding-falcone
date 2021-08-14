@@ -1,7 +1,7 @@
 import React             from 'react';
 import { connect }       from 'react-redux';
 import DefaultPageLayout from '../../components/layout/default-page-layout';
-import resultFalcone     from '../../assets/falcon_result.png';
+import resultFalcone     from '../../assets/falcon_result.PNG';
 import './result-page.scss';
 
 const ResultPage = (props) => {

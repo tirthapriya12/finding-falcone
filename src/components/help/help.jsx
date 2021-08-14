@@ -1,5 +1,5 @@
 import React from 'react';
-import helpImage from '../../assets/help_img.png';
+import helpImage from '../../assets/help_img.PNG';
 
 export default () => {
 
